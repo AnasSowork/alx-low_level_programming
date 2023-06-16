@@ -4,8 +4,9 @@
 #include <stdio.h>
 /* betty style doc for function main goes there */
 /**
+ *main : jgjhgjhg
  *Return : Always 0 (success)
- *And display the results.
+ *
  */
 int main(void)
 {
