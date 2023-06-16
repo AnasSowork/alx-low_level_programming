@@ -9,7 +9,7 @@
  */
 int main(void)
 {
-	// Initialize random number
+	/* Initialize random number */
 		int n;
 
 			srand(time(0));
