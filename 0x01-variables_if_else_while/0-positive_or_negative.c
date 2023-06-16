@@ -3,7 +3,10 @@
 /* more headers goes there */
 #include <stdio.h>
 /* betty style doc for function main goes there */
-/* main - Entry point */
+/**
+ *This program assign a random number to the variable and cheks if it is positive or negative.
+ *And display the results.
+ */
 int main(void)
 {
 		int n;
