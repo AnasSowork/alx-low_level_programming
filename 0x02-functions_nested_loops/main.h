@@ -1,2 +1,1 @@
-#!/bin/bash
-gcc $CFILE
+int _putchar(char c);
