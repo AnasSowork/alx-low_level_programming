@@ -6,7 +6,12 @@
  */
 int main(void)
 {
-	[unsigned] [short|int|long|long long] i, j, k, next, sum;
+	long unsigned int i;
+	long unsigned int j;
+	long unsigned int k;
+	long unsigned int next;
+	long unsigned int sum;
+
 	j = 1;
 	k = 2;
 	sum = 0;
