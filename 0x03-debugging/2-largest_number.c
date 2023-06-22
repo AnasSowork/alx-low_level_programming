@@ -6,11 +6,7 @@
   * @c: third integer
   * Return: largest number
   */
-int main(void)
-{
-	int x = largest_number(125,156,789);
-	printf("%d", x);
-}
+
 int largest_number(int a, int b, int c)
 {
 	int largest;
