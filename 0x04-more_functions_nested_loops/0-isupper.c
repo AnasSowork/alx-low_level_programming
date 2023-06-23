@@ -1,6 +1,5 @@
-#include <stdio.h>
 #include "main.h"
-#include "0-main.c"
+
 /**
  *_isupper - uppercase letters
  * @c: char to check
