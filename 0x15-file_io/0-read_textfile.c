@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "main.h"
-#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
 /**
  *read_textfile - a fucntion that prints
  *@filename: a string pointer.
@@ -15,19 +16,24 @@ ssize_t read_textfile(const char *filename, size_t letters)
 
 	if (!filename)
 		return (0);
+
 	int fdn = open(filename, O_RDWR);
 
 	if (fdn == -1)
 		return (0);
-	int R = read(filename, buffer, letters);
+
+	int R = read(fdn, buffer, letters);
 
 	if (R == -1)
+		close(fdn);
 		return (0);
-	int w = write(STDOUT_FILENO, buffer, letters);
 
-	if (w == -1 || w != letters)
+	int W = write(STDOUT_FILENO, buffer, R);
+
+	if (W == -1 || W != R)
+		close(fdn);
 		return (0);
+
 	close(fdn);
-
-	return (w);
+	return (R);
 }
