@@ -1,47 +1,50 @@
 #include "search_algos.h"
 
 /**
- * jump_list - Searches for a value in a sorted list of integers
- *             using the Jump search algorithm
- * @list: Pointer to the head of the list to search in
- * @size: Number of nodes in @list
- * @value: Value to search for
+ * jump_list - searches for a value in an array of
+ * integers using the Jump search algorithm
  *
- * Return: A pointer to the first node where @value is located,
- *         or NULL if @value is not present in @list or if @list is NULL
+ * @list: input list
+ * @size: size of the array
+ * @value: value to search in
+ * Return: index of the number
  */
 listint_t *jump_list(listint_t *list, size_t size, int value)
 {
-	size_t jump = sqrt(size);
-	listint_t *current = list;
-	listint_t *prev = NULL;
+	size_t index, k, m;
+	listint_t *prev;
 
-	if (list == NULL)
+	if (list == NULL || size == 0)
 		return (NULL);
 
-	while (current && current->n < value)
+	m = (size_t)sqrt((double)size);
+	index = 0;
+	k = 0;
+
+	do {
+		prev = list;
+		k++;
+		index = k * m;
+
+		while (list->next && list->index < index)
+			list = list->next;
+
+		if (list->next == NULL && index != list->index)
+			index = list->index;
+
+		printf("Value checked at index [%d] = [%d]\n", (int)index, list->n);
+
+	} while (index < size && list->next && list->n < value);
+
+	printf("Value found between indexes ");
+	printf("[%d] and [%d]\n", (int)prev->index, (int)list->index);
+
+	for (; prev && prev->index <= list->index; prev = prev->next)
 	{
-		size_t i;
-
-		prev = current;
-		for (i = 0; current->next && i < jump; i++)
-			current = current->next;
-
-		printf("Value checked at index [%lu] = [%d]\n", current->index, current->n);
+		printf("Value checked at index [%d] = [%d]\n", (int)prev->index, prev->n);
+		if (prev->n == value)
+			return (prev);
 	}
-
-	printf("Value found between indexes [%lu] and [%lu]\n", prev->index,
-	current->index);
-
-	current = prev;
-	while (current && current->n < value)
-	{
-		printf("Value checked at index [%lu] = [%d]\n", current->index, current->n);
-		current = current->next;
-	}
-
-	if (current && current->n == value)
-		return (current);
 
 	return (NULL);
 }
